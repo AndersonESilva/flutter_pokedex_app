@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'core/di/main_di.dart';
 import 'features/home/presentation/pages/home_page.dart';
+import 'features/pokemons/presentation/pages/pokemons_page.dart';
 
 void main() {
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: PokemonsPage(),
     );
   }
 }

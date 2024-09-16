@@ -27,6 +27,10 @@ class _PokemonsPageState extends State<PokemonsPage> {
     });
   }
 
+  Future<void> _refreshItems() async {
+    store.fetchPokemon(refresh: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +40,10 @@ class _PokemonsPageState extends State<PokemonsPage> {
       ),
       body: Observer(
         builder: (_) {
-          return NotificationListener<ScrollNotification>(
-            onNotification: (ScrollNotification scrollInfo) {
+          return RefreshIndicator(
+            onRefresh: _refreshItems,
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification scrollInfo) {
                 if (!store.hasMore) return false;
 
                 if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
@@ -45,17 +51,24 @@ class _PokemonsPageState extends State<PokemonsPage> {
                 }
                 return false;
               },
-            child: AnimatedList(
-              key: _listKey,
-              initialItemCount: store.pokemons.length,
-              itemBuilder: (context, index, animation) {
-                if (index >= store.pokemons.length) {
-                  return const Center(child: CircularProgressIndicator());
-                }
+              child: AnimatedList(
+                key: _listKey,
+                initialItemCount: store.pokemons.length,
+                itemBuilder: (context, index, animation) {
+                  if (index >= store.pokemons.length) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(child: CircularProgressIndicator()),
+                      ),
+                    );
+                  }
 
-                final pokemon = store.pokemons[index];
-                return _buildAnimatedItem(pokemon.name, animation);
-              },
+                  final pokemon = store.pokemons[index];
+                  return _buildAnimatedItem(pokemon.name, animation);
+                },
+              ),
             ),
           );
         },
