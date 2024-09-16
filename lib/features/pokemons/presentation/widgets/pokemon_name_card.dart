@@ -11,6 +11,16 @@ class PokemonNameCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(pokemon.name);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),
+        child: Center(
+          child: Text(
+              pokemon.name,
+              style: const TextStyle(
+                fontSize: 18
+              )),
+        )),
+    );
   }
 }

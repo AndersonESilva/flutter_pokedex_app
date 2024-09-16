@@ -37,45 +37,54 @@ class _PokemonsPageState extends State<PokemonsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Pokemon List"),
-      ),
-      body: Observer(
-        builder: (_) {
-          return RefreshIndicator(
-            onRefresh: _refreshItems,
-            child: NotificationListener<ScrollNotification>(
-              onNotification: (ScrollNotification scrollInfo) {
-                if (!store.hasMore) return false;
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text("Pokemon List"),
+        ),
+        body: Observer(
+          builder: (_) {
+            return RefreshIndicator(
+                onRefresh: _refreshItems,
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: NotificationListener<ScrollNotification>(
+                          onNotification: (ScrollNotification scrollInfo) {
+                            if (!store.hasMore) return false;
 
-                if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {
-                  store.fetchPokemon();
-                }
-                return false;
-              },
-              child: AnimatedList(
-                key: _listKey,
-                initialItemCount: store.pokemons.length,
-                itemBuilder: (context, index, animation) {
-                  if (index >= store.pokemons.length) {
-                    return AnimatedFadeLoading(
-                      animation: animation,
-                    );
-                  }
-
-                  return AnimatedSlideFade(
-                    animation: animation,
-                    child: PokemonNameCard(
-                      pokemon: store.pokemons[index]
+                            if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent && !store.isLoading) {
+                              store.fetchPokemon();
+                            }
+                            return false;
+                          },
+                          child: AnimatedList(
+                            key: _listKey,
+                            initialItemCount: store.pokemons.length,
+                            itemBuilder: (context, index, animation) {
+                              if(index >= store.pokemons.length){
+                                return const SizedBox.shrink();
+                              } else {
+                                return AnimatedSlideFade(
+                                  animation: animation,
+                                  child: PokemonNameCard(
+                                      pokemon: store.pokemons[index]
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        )
                     ),
-                  );
-                },
-              ),
-            ),
-          );
-        },
-      )
+                    if (store.isLoading)
+                      const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: CircularProgressIndicator(),
+                      ),
+                  ],
+                )
+            );
+          },
+        )
     );
   }
 }
