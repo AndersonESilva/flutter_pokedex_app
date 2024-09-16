@@ -47,49 +47,57 @@ class _PokemonsPageState extends State<PokemonsPage> {
             },
           ),
         ),
-        body: Observer(
-          builder: (_) {
-            return RefreshIndicator(
-                onRefresh: _refreshItems,
-                child: Column(
-                  children: [
-                    Expanded(
-                        child: NotificationListener<ScrollNotification>(
-                          onNotification: (ScrollNotification scrollInfo) {
-                            if (!store.hasMore) return false;
+        body: Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/list_background.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Observer(
+              builder: (_) {
+                return RefreshIndicator(
+                    onRefresh: _refreshItems,
+                    child: Column(
+                      children: [
+                        Expanded(
+                            child: NotificationListener<ScrollNotification>(
+                              onNotification: (ScrollNotification scrollInfo) {
+                                if (!store.hasMore) return false;
 
-                            if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent && !store.isLoading) {
-                              store.fetchPokemon();
-                            }
-                            return false;
-                          },
-                          child: AnimatedList(
-                            key: _listKey,
-                            initialItemCount: store.pokemons.length,
-                            itemBuilder: (context, index, animation) {
-                              if(index >= store.pokemons.length){
-                                return const SizedBox.shrink();
-                              } else {
-                                return AnimatedSlideFade(
-                                  animation: animation,
-                                  child: PokemonNameCard(
-                                      pokemon: store.pokemons[index]
-                                  ),
-                                );
-                              }
-                            },
+                                if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent && !store.isLoading) {
+                                  store.fetchPokemon();
+                                }
+                                return false;
+                              },
+                              child: AnimatedList(
+                                key: _listKey,
+                                initialItemCount: store.pokemons.length,
+                                itemBuilder: (context, index, animation) {
+                                  if(index >= store.pokemons.length){
+                                    return const SizedBox.shrink();
+                                  } else {
+                                    return AnimatedSlideFade(
+                                      animation: animation,
+                                      child: PokemonNameCard(
+                                          pokemon: store.pokemons[index]
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                            )
+                        ),
+                        if (store.isLoading)
+                          const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: CircularProgressIndicator(),
                           ),
-                        )
-                    ),
-                    if (store.isLoading)
-                      const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: CircularProgressIndicator(),
-                      ),
-                  ],
-                )
-            );
-          },
+                      ],
+                    )
+                );
+                },
+            )
         )
     );
   }

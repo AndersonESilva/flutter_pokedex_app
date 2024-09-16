@@ -15,7 +15,7 @@ class AppRouter {
           child: HomePage(),
           transitionDuration: const Duration(milliseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            const begin = Offset(1.0, 0.0);
+            const begin = Offset(-1.0, 0.0);
             const end = Offset.zero;
             const curve = Curves.easeInOut;
 
