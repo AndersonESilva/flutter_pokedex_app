@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/di/main_di.dart';
-import 'features/home/presentation/pages/home_page.dart';
-import 'features/pokemons/presentation/pages/pokemons_page.dart';
+import 'core/infrastructure/router/app_router.dart';
 
 void main() {
 
@@ -16,13 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: HomePage(),
     );
   }
 }

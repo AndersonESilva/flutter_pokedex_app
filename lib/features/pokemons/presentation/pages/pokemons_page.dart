@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../common/presentation/widgets/animated_fade_loading.dart';
 import '../../../../common/presentation/widgets/animated_slide_fade.dart';
 import '../../../../core/di/main_di.dart';
 import '../stores/pokemons_store.dart';
@@ -40,6 +40,12 @@ class _PokemonsPageState extends State<PokemonsPage> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text("Pokemon List"),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              context.go('/');
+            },
+          ),
         ),
         body: Observer(
           builder: (_) {

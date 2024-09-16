@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex_app/features/home/presentation/stores/home_store.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/di/main_di.dart';
 
-import '../../../../core/di/main_di.dart';
 import '../widgets/energy_bar_card.dart';
 import '../widgets/pokemon_button.dart';
 
@@ -44,9 +44,7 @@ class _HomePageState extends State<HomePage> {
                     EnergyBarCard(power: store.batteryLevel.toDouble()),
                     PokemonButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Botão pressionado!")),
-                        );
+                        context.go('/pokemons');
                       },
                     )
                   ],
