@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../../../common/presentation/widgets/animated_fade_loading.dart';
+import '../../../../common/presentation/widgets/animated_slide_fade.dart';
 import '../../../../core/di/main_di.dart';
 import '../stores/pokemons_store.dart';
+import '../widgets/pokemon_name_card.dart';
 
 class PokemonsPage extends StatefulWidget {
 
@@ -56,45 +59,23 @@ class _PokemonsPageState extends State<PokemonsPage> {
                 initialItemCount: store.pokemons.length,
                 itemBuilder: (context, index, animation) {
                   if (index >= store.pokemons.length) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Center(child: CircularProgressIndicator()),
-                      ),
+                    return AnimatedFadeLoading(
+                      animation: animation,
                     );
                   }
 
-                  final pokemon = store.pokemons[index];
-                  return _buildAnimatedItem(pokemon.name, animation);
+                  return AnimatedSlideFade(
+                    animation: animation,
+                    child: PokemonNameCard(
+                      pokemon: store.pokemons[index]
+                    ),
+                  );
                 },
               ),
             ),
           );
         },
       )
-    );
-  }
-
-  Widget _buildAnimatedItem(String name, Animation<double> animation) {
-    final curvedAnimation = CurvedAnimation(
-      parent: animation,
-      curve: Curves.easeInOut,
-    );
-
-    return SlideTransition(
-      position: curvedAnimation.drive(
-        Tween<Offset>(
-          begin: const Offset(1, 0),
-          end: Offset.zero,
-        ),
-      ),
-      child: FadeTransition(
-        opacity: curvedAnimation,
-        child: ListTile(
-          title: Text(name),
-        ),
-      ),
     );
   }
 }
