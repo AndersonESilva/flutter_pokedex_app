@@ -4,11 +4,10 @@ import 'package:flutter_pokedex_app/features/home/presentation/stores/home_store
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mockito/mockito.dart' as mockito;
 
 import 'home_store_test.mocks.dart';
 
-@GenerateMocks([GetBatteryLevelUseCase])
+@GenerateNiceMocks([MockSpec<GetBatteryLevelUseCase>()])
 void main() {
   late HomeStore homeStore;
   late MockGetBatteryLevelUseCase mockGetBatteryLevelUseCase;
@@ -20,19 +19,19 @@ void main() {
 
   test('should update batteryLevel when getBatteryLevelInfo is called', () async {
     const expectedBatteryLevel = 80;
-    mockito.when(mockGetBatteryLevelUseCase.call(NoParams()))
+
+    when(mockGetBatteryLevelUseCase.call(NoParams()))
         .thenAnswer((_) async => expectedBatteryLevel);
 
     await homeStore.getBatteryLevelInfo();
 
     expect(homeStore.batteryLevel, expectedBatteryLevel);
-
     verify(mockGetBatteryLevelUseCase.call(NoParams())).called(1);
   });
 
   test('should keep the batteryLevel at 0 if the use case returns an error', () async {
 
-    mockito.when(mockGetBatteryLevelUseCase.call(NoParams()))
+    when(mockGetBatteryLevelUseCase.call(NoParams()))
         .thenThrow(Exception('Error getting battery level'));
 
     await homeStore.getBatteryLevelInfo();

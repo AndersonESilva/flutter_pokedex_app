@@ -19,7 +19,11 @@ abstract class _HomeStore with Store {
   @action
   Future<void> getBatteryLevelInfo() async {
     runInAction(() async {
-      batteryLevel = await getBatteryLevel.call(NoParams());
+      try {
+        batteryLevel = await getBatteryLevel.call(NoParams());
+      } catch (e) {
+        batteryLevel = 0;
+      }
     });
   }
 }

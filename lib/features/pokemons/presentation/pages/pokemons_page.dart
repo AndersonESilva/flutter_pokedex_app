@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_pokedex_app/core/di/stores_di.dart';
 
+import '../../../../core/di/main_di.dart';
 import '../stores/pokemons_store.dart';
 
 class PokemonsPage extends StatefulWidget {

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_pokedex_app/core/di/repositories_di.dart';
 import 'package:flutter_pokedex_app/features/home/presentation/stores/home_store.dart';
+
+import '../../../../core/di/main_di.dart';
+
+import '../../../../core/di/main_di.dart';
 
 class HomePage extends StatefulWidget {
 

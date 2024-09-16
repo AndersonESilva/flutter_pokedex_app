@@ -1,17 +1,17 @@
 
 import 'dart:async';
 
-import '../../core/utils/tool/battery_tool.dart';
+import '../../core/infrastructure/platform/battery_service.dart';
 import '../../core/utils/use_cases/use_case.dart';
 
 class GetBatteryLevelUseCase extends UseCase<int, NoParams>{
-  final BatteryTool _batteryTool;
+  final BatteryService _batteryService;
 
-  GetBatteryLevelUseCase(this._batteryTool);
+  GetBatteryLevelUseCase(this._batteryService);
 
   @override
   Future<int> call(NoParams params) async {
-    final batteryLevel = await _batteryTool.getBatteryLevel();
+    final batteryLevel = await _batteryService.getBatteryLevel();
 
     if(batteryLevel != null){
       return batteryLevel;
