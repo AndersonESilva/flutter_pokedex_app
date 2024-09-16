@@ -1,4 +1,3 @@
-import 'package:flutter_pokedex_app/core/utils/use_cases/use_case.dart';
 import 'package:flutter_pokedex_app/domain/use_cases/get_battery_level_usecase.dart';
 import 'package:flutter_pokedex_app/features/home/presentation/stores/home_store.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -20,24 +19,24 @@ void main() {
   test('should update batteryLevel when getBatteryLevelInfo is called', () async {
     const expectedBatteryLevel = 80;
 
-    when(mockGetBatteryLevelUseCase.call(NoParams()))
+    when(mockGetBatteryLevelUseCase.call(any))
         .thenAnswer((_) async => expectedBatteryLevel);
 
     await homeStore.getBatteryLevelInfo();
 
     expect(homeStore.batteryLevel, expectedBatteryLevel);
-    verify(mockGetBatteryLevelUseCase.call(NoParams())).called(1);
+    verify(mockGetBatteryLevelUseCase.call(any)).called(1);
   });
 
   test('should keep the batteryLevel at 0 if the use case returns an error', () async {
 
-    when(mockGetBatteryLevelUseCase.call(NoParams()))
+    when(mockGetBatteryLevelUseCase.call(any))
         .thenThrow(Exception('Error getting battery level'));
 
     await homeStore.getBatteryLevelInfo();
 
     expect(homeStore.batteryLevel, 0);
 
-    verify(mockGetBatteryLevelUseCase.call(NoParams())).called(1);
+    verify(mockGetBatteryLevelUseCase.call(any)).called(1);
   });
 }

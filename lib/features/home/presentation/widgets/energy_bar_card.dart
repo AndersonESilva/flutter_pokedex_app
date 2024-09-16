@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EnergyBarCard extends StatelessWidget {
-  final double power; // Valor entre 0 e 100 para o progresso
+  final double power;
 
   const EnergyBarCard({
     Key? key,
