@@ -5,6 +5,8 @@ import 'package:flutter_pokedex_app/features/home/presentation/stores/home_store
 import '../../../../core/di/main_di.dart';
 
 import '../../../../core/di/main_di.dart';
+import '../widgets/energy_bar_card.dart';
+import '../widgets/pokemon_button.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -24,13 +26,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Observer(
-        builder: (_) {
-          return Center(
-            child: Text('Seu nivel de poder é seu nivel de bateria: ${store.batteryLevel.toString()}'),
-          );
-        }
-      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Observer(
+            builder: (_) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    EnergyBarCard(power: store.batteryLevel.toDouble()),
+                    PokemonButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Botão pressionado!")),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              );
+            }
+        ),
+      )
     );
   }
 }
