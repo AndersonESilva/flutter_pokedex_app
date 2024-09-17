@@ -26,6 +26,12 @@ class _PokemonInfoState extends State<PokemonInfoPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    store.pokemon = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -43,14 +49,26 @@ class _PokemonInfoState extends State<PokemonInfoPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      context.go('/pokemons');
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          iconSize: 32,
+                          color: Colors.black,
+                          onPressed: () {
+                            context.go('/pokemons');
+                          },
+                        ),
+                        Spacer()
+                      ],
+                  )
                   ),
                   if(store.pokemon != null)
-                    PokemonInfoCard(pokemon: store.pokemon!)
+                    PokemonInfoCard(pokemon: store.pokemon!, pokemonName: widget.pokemonName)
+                  else if(store.pokemon == null || store.isLoading)
+                    const CircularProgressIndicator()
                 ],
               ),
             );
@@ -58,5 +76,4 @@ class _PokemonInfoState extends State<PokemonInfoPage> {
       ),
     );
   }
-
 }
