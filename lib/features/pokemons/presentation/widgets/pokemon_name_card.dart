@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/string.dart';
 import '../../../../domain/entities/pokemon_name.dart';
 
 class PokemonNameCard extends StatelessWidget {
@@ -16,7 +17,7 @@ class PokemonNameCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),
         child: Center(
           child: Text(
-              pokemon.name,
+              capitalizeFirstLetter(pokemon.name),
               style: const TextStyle(
                 fontSize: 18
               )),
