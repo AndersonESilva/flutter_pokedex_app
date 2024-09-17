@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_pokedex_app/features/pokemon_info/presentation/widgets/pokemon_info_card.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../core/di/main_di.dart';
+import '../stores/pokemon_info_store.dart';
 
 class PokemonInfoPage extends StatefulWidget {
   final String pokemonName;
@@ -13,6 +17,13 @@ class PokemonInfoPage extends StatefulWidget {
 }
 
 class _PokemonInfoState extends State<PokemonInfoPage> {
+  final PokemonInfoStore store = getIt<PokemonInfoStore>();
+
+  @override
+  void initState() {
+    super.initState();
+    store.getPokemonInfo(widget.pokemonName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +49,8 @@ class _PokemonInfoState extends State<PokemonInfoPage> {
                       context.go('/pokemons');
                     },
                   ),
-
+                  if(store.pokemon != null)
+                    PokemonInfoCard(pokemon: store.pokemon!)
                 ],
               ),
             );
