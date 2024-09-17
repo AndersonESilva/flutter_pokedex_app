@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../common/presentation/widgets/animated_slide_fade.dart';
+import '../../../../common/presentation/widgets/error_row_widget.dart';
 import '../../../../core/di/main_di.dart';
 import '../stores/pokemons_store.dart';
 import '../widgets/pokemon_name_card.dart';
@@ -60,6 +61,8 @@ class _PokemonsPageState extends State<PokemonsPage> {
                     onRefresh: _refreshItems,
                     child: Column(
                       children: [
+                        if(store.errorExecuted)
+                          ErrorRowWidget(),
                         Expanded(
                             child: NotificationListener<ScrollNotification>(
                               onNotification: (ScrollNotification scrollInfo) {

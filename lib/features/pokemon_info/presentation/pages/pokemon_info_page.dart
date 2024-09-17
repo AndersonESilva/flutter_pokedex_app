@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_pokedex_app/features/pokemon_info/presentation/widgets/pokemon_info_card.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../common/presentation/widgets/error_row_widget.dart';
 import '../../../../core/di/main_di.dart';
 import '../stores/pokemon_info_store.dart';
 
@@ -49,6 +50,8 @@ class _PokemonInfoState extends State<PokemonInfoPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  if(store.errorExecuted)
+                    const ErrorRowWidget(),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
@@ -61,7 +64,7 @@ class _PokemonInfoState extends State<PokemonInfoPage> {
                             context.go('/pokemons');
                           },
                         ),
-                        Spacer()
+                        const Spacer()
                       ],
                   )
                   ),
