@@ -37,11 +37,11 @@ void setupPlatform() {
 void setupUseCases() {
   getIt.registerSingleton<GetBatteryLevelUseCase>(GetBatteryLevelUseCase(getIt<BatteryService>()));
   getIt.registerSingleton<GetPokemonsUseCase>(GetPokemonsUseCase(getIt<PokemonRepository>()));
-  getIt.registerSingleton<GetPokemonInfo>(GetPokemonInfo(getIt<PokemonRepository>()));
+  getIt.registerSingleton<GetPokemonInfoUseCase>(GetPokemonInfoUseCase(getIt<PokemonRepository>()));
 }
 
 void setupStores() {
   getIt.registerSingleton<HomeStore>(HomeStore(getIt<GetBatteryLevelUseCase>()));
   getIt.registerSingleton<PokemonsStore>(PokemonsStore(getIt<GetPokemonsUseCase>()));
-  getIt.registerSingleton<PokemonInfoStore>(PokemonInfoStore(getIt<GetPokemonInfo>()));
+  getIt.registerSingleton<PokemonInfoStore>(PokemonInfoStore(getIt<GetPokemonInfoUseCase>()));
 }

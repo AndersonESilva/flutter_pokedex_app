@@ -11,7 +11,7 @@ import 'package:mockito/mockito.dart' as mockito;
 
 import 'pokemon_info_store_test.mocks.dart';
 
-@GenerateMocks([GetPokemonInfo])
+@GenerateMocks([GetPokemonInfoUseCase])
 void main() {
   late MockGetPokemonInfo mockGetPokemonInfo;
   late PokemonInfoStore pokemonInfoStore;

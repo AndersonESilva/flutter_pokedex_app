@@ -9,7 +9,7 @@ part 'pokemon_info_store.g.dart';
 class PokemonInfoStore = _PokemonInfoStore with _$PokemonInfoStore;
 
 abstract class _PokemonInfoStore with Store {
-  final GetPokemonInfo getPokemon;
+  final GetPokemonInfoUseCase getPokemon;
 
   _PokemonInfoStore(this.getPokemon);
 

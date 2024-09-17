@@ -11,13 +11,13 @@ import 'get_pokemons_usecase_test.mocks.dart';
 
 @GenerateMocks([PokemonRepository])
 void main() {
-  late GetPokemonInfo useCase;
+  late GetPokemonInfoUseCase useCase;
   late MockPokemonRepository mockRepository;
   const pokemonName = 'pikachu';
 
   setUp(() {
     mockRepository = MockPokemonRepository();
-    useCase = GetPokemonInfo(mockRepository);
+    useCase = GetPokemonInfoUseCase(mockRepository);
   });
 
   test('should return PokémonInfo when the repository call is successful', () async {
