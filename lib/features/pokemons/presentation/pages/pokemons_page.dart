@@ -79,9 +79,14 @@ class _PokemonsPageState extends State<PokemonsPage> {
                                   } else {
                                     return AnimatedSlideFade(
                                       animation: animation,
-                                      child: PokemonNameCard(
-                                          pokemon: store.pokemons[index]
-                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          context.go('/pokemon/${store.pokemons[index].name}');
+                                        },
+                                        child: PokemonNameCard(
+                                            pokemon: store.pokemons[index]
+                                        ),
+                                      )
                                     );
                                   }
                                 },

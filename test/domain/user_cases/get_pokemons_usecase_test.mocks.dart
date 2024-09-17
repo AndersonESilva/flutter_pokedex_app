@@ -7,6 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_pokedex_app/core/network/error/failure.dart' as _i6;
 import 'package:flutter_pokedex_app/core/network/result.dart' as _i2;
+import 'package:flutter_pokedex_app/domain/entities/pokemon_info.dart' as _i7;
 import 'package:flutter_pokedex_app/domain/entities/pokemon_name.dart' as _i5;
 import 'package:flutter_pokedex_app/domain/repositories/pokemon_repository.dart'
     as _i3;
@@ -71,4 +72,24 @@ class MockPokemonRepository extends _i1.Mock implements _i3.PokemonRepository {
           ),
         )),
       ) as _i4.Future<_i2.Result<List<_i5.PokemonName>, _i6.Failure>>);
+
+  @override
+  _i4.Future<_i2.Result<_i7.PokemonInfo, _i6.Failure>> getPokemonInfo(
+          {required String? nome}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getPokemonInfo,
+          [],
+          {#nome: nome},
+        ),
+        returnValue: _i4.Future<_i2.Result<_i7.PokemonInfo, _i6.Failure>>.value(
+            _FakeResult_0<_i7.PokemonInfo, _i6.Failure>(
+          this,
+          Invocation.method(
+            #getPokemonInfo,
+            [],
+            {#nome: nome},
+          ),
+        )),
+      ) as _i4.Future<_i2.Result<_i7.PokemonInfo, _i6.Failure>>);
 }

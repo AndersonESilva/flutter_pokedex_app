@@ -12,7 +12,7 @@ extension ApiPokemonExtensions on ApiPokemon {
 }
 
 extension ApiPokemonInfoExtensions on ApiPokemonInfo {
-  PokemonInfo toPokemonNameList() {
+  PokemonInfo toPokemonInfo() {
     final typeNames = types.map((type) => type.name).toList();
     return PokemonInfo(image: frontDefault, types: typeNames);
   }
