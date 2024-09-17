@@ -73,8 +73,7 @@ void main() {
   });
 
   test('should handle fetch failure', () async {
-    final failure = Failure(403);
-    final result = Result<List<PokemonName>, Failure>.error(failure);
+    final result = Result<List<PokemonName>, Failure>.error(Failure(403));
 
     mockito.when(mockGetPokemonsUseCase.call(any))
         .thenAnswer((_) async => result);
