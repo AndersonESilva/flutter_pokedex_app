@@ -35,8 +35,7 @@ void main() {
 
   test('should handle failure from repository', () async {
     final params = GetPokemonsParams(10, 1);
-    final failure = Failure(403);
-    final result = Result<List<PokemonName>, Failure>.error(failure);
+    final result = Result<List<PokemonName>, Failure>.error(Failure(403));
 
     when(mockRepository.getPokemonNames(limit: 10, offset: 0))
         .thenAnswer((_) async => result);
