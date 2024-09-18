@@ -4,12 +4,12 @@ Esse projeto tem como objetivo demonstrar o uso de Clean Architecture em projeto
 
 ## MethodChannel
 O MethodChannel está implementado na página Home, para esse caso de uso foi utilizado o método nativo Android e IOS para capturar nível de bateria do device.
-O nível de bateria está sendo exibido como poder na tela Home.
+O nível de bateria está sendo exibido como "nível de poder" na tela Home.
 
 Para visualizar a funcionalidade, recomendo utilizar um dispositivo Android (emulador ou físico) ou em um dispositivo iOS físico. Isso ocorre porque o uso de emuladores iOS não permitem a captura do nível de bateria.
 
 ## Animações Avançadas
-No projeto está implementado animações avançadas para melhorar a experiência do usuário. 
+O projeto conta com animações avançadas, implementadas para aprimorar a experiência do usuário.
 - Animação na exibição da lista de Pokemons na página Pokemons com Fade e Slide.
 - Ao navegar pelo app, as transações dentre as páginas estão implementadas com animações diferentes.
 
