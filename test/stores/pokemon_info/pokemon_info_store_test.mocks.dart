@@ -35,11 +35,12 @@ class _FakeResult_0<T, E> extends _i1.SmartFake implements _i2.Result<T, E> {
         );
 }
 
-/// A class which mocks [GetPokemonInfo].
+/// A class which mocks [GetPokemonInfoUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetPokemonInfo extends _i1.Mock implements _i3.GetPokemonInfoUseCase {
-  MockGetPokemonInfo() {
+class MockGetPokemonInfoUseCase extends _i1.Mock
+    implements _i3.GetPokemonInfoUseCase {
+  MockGetPokemonInfoUseCase() {
     _i1.throwOnMissingStub(this);
   }
 

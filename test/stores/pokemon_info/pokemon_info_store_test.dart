@@ -13,11 +13,12 @@ import 'pokemon_info_store_test.mocks.dart';
 
 @GenerateMocks([GetPokemonInfoUseCase])
 void main() {
-  late MockGetPokemonInfo mockGetPokemonInfo;
+  late MockGetPokemonInfoUseCase mockGetPokemonInfo;
   late PokemonInfoStore pokemonInfoStore;
+  const pokemonName = 'pikachu';
 
   setUp(() {
-    mockGetPokemonInfo = MockGetPokemonInfo();
+    mockGetPokemonInfo = MockGetPokemonInfoUseCase();
     pokemonInfoStore = PokemonInfoStore(mockGetPokemonInfo);
   });
 
@@ -28,7 +29,7 @@ void main() {
     mockito.when(mockGetPokemonInfo.call(any))
         .thenAnswer((_) async => Result.success(mockPokemonInfo));
 
-    await pokemonInfoStore.getPokemonInfo('bulbasaur');
+    await pokemonInfoStore.getPokemonInfo(pokemonName);
 
     expect(pokemonInfoStore.isLoading, false);
     expect(pokemonInfoStore.errorExecuted, false);
@@ -40,7 +41,7 @@ void main() {
     mockito.when(mockGetPokemonInfo.call(any))
         .thenAnswer((_) async => Result.error(Failure(403)));
 
-    await pokemonInfoStore.getPokemonInfo('charmander');
+    await pokemonInfoStore.getPokemonInfo(pokemonName);
 
     expect(pokemonInfoStore.isLoading, false);
     expect(pokemonInfoStore.errorExecuted, true);
@@ -56,7 +57,7 @@ void main() {
           () => Result.success(mockPokemonInfo),
     ));
 
-    final future = pokemonInfoStore.getPokemonInfo('charmander');
+    final future = pokemonInfoStore.getPokemonInfo(pokemonName);
     expect(pokemonInfoStore.isLoading, true);
 
     await future;
