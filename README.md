@@ -1,26 +1,27 @@
-# Clean Architecture e MethodChannel
+# Clean Architecture and MethodChannel
 
-Esse projeto tem como objetivo demonstrar o uso de Clean Architecture em projetos Flutter, além de ter um caso de uso com aplicação prática de MethodChannel para uso de código nativo Android e IOS.
+This project aims to demonstrate the implementation of Clean Architecture in Flutter applications, along with a practical use case of MethodChannel to integrate native Android and iOS code.
 
 ## MethodChannel
-O MethodChannel está implementado na página Home, para esse caso de uso foi utilizado o método nativo Android e IOS para capturar nível de bateria do device.
-O nível de bateria está sendo exibido como "nível de poder" na tela Home.
+MethodChannel is implemented on the Home screen. In this use case, native Android and iOS APIs are used to retrieve the device's battery level.
 
-Para visualizar a funcionalidade, recomendo utilizar um dispositivo Android (emulador ou físico) ou em um dispositivo iOS físico. Isso ocorre porque o uso de emuladores iOS não permitem a captura do nível de bateria.
+The battery level is displayed as a "Power Level" on the Home screen.
 
-## Animações Avançadas
-O projeto conta com animações avançadas, implementadas para aprimorar a experiência do usuário.
-- Animação na exibição da lista de Pokemons na página Pokemons com Fade e Slide.
-- Ao navegar pelo app, as transações dentre as páginas estão implementadas com animações diferentes.
+To test this feature, I recommend using an Android device (emulator or physical device) or a physical iOS device. This is because iOS simulators do not provide reliable battery level information.
 
-## Testes
-Testes foram implementados em diferenes camadas do projeto. 
+## Advanced Animations
+The project includes advanced animations designed to enhance the user experience.
+- Fade and Slide animations when displaying the Pokemon list on the Pokémon screen.
+- Different page transition animations throughout the application to provide smoother navigation.
+
+## Tests
+Tests have been implemented across different layers of the application.
 - Domain Use Cases
 - Stores
-- Testes de Widgets em páginas principais
+- Widget Tests for Main Screens
 
-## Bibliotecas
-Foram utilizadas no projeto apenas as bibliotecas essenciais para a implementação ser realizada com sucesso.
+## Libraries
+Only essential libraries were used to keep the project lightweight and maintainable.
 - HTTP
 - MobX
 - Get_it
